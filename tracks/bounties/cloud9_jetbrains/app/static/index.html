@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C9 Fearless Command</title>
+  <link rel="stylesheet" href="/workbench.css">
+  <script src="/workbench.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="Fearless Command home">
+      <span class="brand-mark" aria-hidden="true"><i></i></span>
+      <span>FEARLESS <strong>COMMAND</strong></span>
+    </a>
+    <span class="mode" id="mode"><i></i> Connecting</span>
+  </header>
+  <main>
+    <div class="title-row">
+      <div><h1>Draft workbench</h1><p id="source">Preparing the scouting workspace…</p></div>
+      <div id="series-score" aria-label="Series score" class="series-score"></div>
+    </div>
+    <div id="error" class="error" role="alert" hidden></div>
+    <div class="workspace" id="workspace" aria-busy="true">
+      <aside class="panel scouting" aria-labelledby="scout-heading">
+        <div class="panel-heading"><h2 id="scout-heading">Macro scouting</h2></div>
+        <div class="scout-controls">
+          <label>Your team<select id="team"></select></label>
+          <label>Opponent<select id="opponent"></select></label>
+          <label>Opponent league<select id="competition"></select></label>
+          <div class="control-grid">
+            <label>Patch<select id="patch"></select></label>
+            <label>Scout side<select id="side"><option value="">Both</option><option value="blue">Blue</option><option value="red">Red</option></select></label>
+          </div>
+        </div>
+        <div id="scouting" class="scout-results" aria-live="polite"></div>
+      </aside>
+      <section class="panel board" aria-labelledby="board-heading">
+        <div class="panel-heading"><h2 id="board-heading">Series draft</h2><span class="tag">HARD FEARLESS · BO5</span></div>
+        <div id="game-tabs" class="game-tabs" role="group" aria-label="Series games"></div>
+        <div class="board-meta">
+          <p id="turn" class="turn" aria-live="polite"></p>
+          <div class="board-tools">
+            <button type="button" id="swap" title="Swap the teams' blue and red map sides">Swap sides</button>
+            <label class="priority">First pick <select id="priority" aria-label="First pick side"><option value="blue">Blue</option><option value="red">Red</option></select></label>
+          </div>
+        </div>
+        <div id="draft-slots" class="draft-slots"></div>
+        <details class="lock-box" id="lock-box">
+          <summary><span>Series locks</span><span id="lock-count">0</span></summary>
+          <div id="locks"></div>
+        </details>
+        <div id="choose-action" class="choose-action">
+          <label for="champion">Choose champion</label>
+          <div class="choose-row"><select id="champion"></select><button type="button" id="apply" class="primary">Apply</button></div>
+        </div>
+        <div class="action-tools"><button type="button" id="undo">Undo</button><button type="button" id="pass">Pass ban</button><button type="button" id="reset">Reset series</button></div>
+        <section class="next-options" id="next-options" aria-labelledby="option-heading">
+          <div class="section-heading"><h3 id="option-heading">Next-turn options</h3><span>Δ acting side</span></div>
+          <div id="recommendations"></div>
+        </section>
+        <div class="result-controls" id="result-controls" hidden>
+          <label>Scenario winner<select id="winner"></select></label>
+          <button type="button" class="primary" id="finish">Record result</button>
+        </div>
+      </section>
+      <aside class="right-rail" aria-label="Live win rate and coach brief">
+        <section class="panel impact" aria-labelledby="impact-heading">
+          <div class="panel-heading"><h2 id="impact-heading">Win-rate impact</h2><span class="tag">PER TURN</span></div>
+          <div class="stat">
+            <div><span class="stat-label">Blue win probability</span><strong id="probability">—</strong></div>
+            <div class="stat-delta"><span class="stat-label">Δ vs. pre-draft</span><strong id="delta">—</strong></div>
+          </div>
+          <svg id="curve" class="curve" viewBox="0 0 300 150" role="img" aria-label="Blue win probability change by draft turn"></svg>
+          <p id="stage-note" class="stage-note"></p>
+        </section>
+        <section class="panel brief" aria-labelledby="brief-heading">
+          <div class="panel-heading"><h2 id="brief-heading">How to win</h2><span class="brief-mark" aria-hidden="true">↗</span></div>
+          <div id="brief" class="brief-cards"></div>
+        </section>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
